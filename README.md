@@ -2,7 +2,7 @@
 Pokemon Guessing Game
 
 Todo: 
-Give only 3 guesses 
+Give only 3 guesses \n
 
 Add background
 
