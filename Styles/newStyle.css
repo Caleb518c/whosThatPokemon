@@ -16,16 +16,48 @@
         font-family: "Poppins", sans-serif;
     }
     
+
+
+    .results {
+        width: 30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 1%;
+        border-radius: 10px;
+        /* border: 10px solid pink; */
+    }
     
     .searchBar {
-        width: 30%;
-        border-radius: 5px;
+        width: 100%;
         border: none;
-        padding: .6%;
+        padding: 2.5%;
         font-size: 120%;
-        margin: 1%;
+        background-color: white;
+        box-sizing: border-box;
     }
 
+    .autoCompleteList {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        list-style-type: none;
+        width: 100%;
+        margin: 0;
+        padding: 2.5%;
+        background-color: white;
+        color: rgb(99, 99, 99);
+        box-sizing: border-box;
+        text-decoration: none;
+      }
+    .autoCompleteList li {
+        text-align: center;
+        margin: 1%;
+        padding: 1%;
+        cursor: pointer;
+        text-decoration: none;
+      }
 
 
     .hintButton {

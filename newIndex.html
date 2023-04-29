@@ -12,11 +12,20 @@
     <h1>Who's that Pokémon?</h1>
     <div>---------------------------------------------------------------</div>
 
-    <input type="text" class="searchBar" id="searchBar" placeholder="Who's that Pokémon?" style="text-align: center;">
+    
+    <div class="results">
+        <input type="text" class="searchBar" id="searchBar" placeholder="Who's that Pokémon?" style="text-align: center;">
+        <ul id="autoCompleteList" class="autoCompleteList"></ul>
+    </div>
+
+
     <button class="hintButton" id="hintButton">New Hint</button>
     <p class="hintsLeft" id="hintsLeft">Hints Left: 5</p>
-    <button id="giveUpButton">Give Up</button>
-    <button id="newPokemon">New pokemon</button>
+    <p class="guessesLeft" id="guessesLeft">Guesses Left: 3</p>
+    <button id="giveUpButton" onclick="giveUp()">Give Up</button>
+    <button id="newPokemon">New pokémon</button>
+
+    
     
     <h1 id="name">Name</h1>
 
