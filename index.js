@@ -561,20 +561,20 @@ function setTypes(index, imgNumber){
 }
 
 
-if (sessionStorage.getItem("currentStreak") === null){
-    sessionStorage.setItem("currentStreak", 0);
+if (localStorage.getItem("currentStreak") === null){
+    localStorage.setItem("currentStreak", 0);
 }
 
 function currentStreak(input){
-    let currentStreakVar = parseInt(sessionStorage.getItem("currentStreak"));
+    let currentStreakVar = parseInt(localStorage.getItem("currentStreak"));
 
     if (input === "increase"){
         currentStreakVar++;
-        sessionStorage.setItem("currentStreak", currentStreakVar);
+        localStorage.setItem("currentStreak", currentStreakVar);
         document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
     } else {
         currentStreakVar = 0;
-        sessionStorage.setItem("currentStreak", currentStreakVar);
+        localStorage.setItem("currentStreak", currentStreakVar);
         document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
     }
 }
