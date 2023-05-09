@@ -7,31 +7,53 @@
     <title>Pokemon</title>
     <link rel="stylesheet" href="Styles/newStyle.css">
 </head>
-<body>
+
+<div class="stripes">
+    <div class="stripe1" id="stripe1">-</div>
+    <div class="stripe2" id="stripe2">-</div>
+    <div class="stripe3" id="stripe3">-</div>
+</div>
+
+<body id="body">
     
     <h1>Who's that Pokémon?</h1>
-    <div>---------------------------------------------------------------</div>
+    <div class="horizontalLine">&#8192</div>
 
     
-    <div class="results">
-        <input type="text" class="searchBar" id="searchBar" placeholder="Who's that Pokémon?" style="text-align: center;">
+    <div class="results" id="results">
+        <div class="search" id="search">
+            <input type="text" class="searchBar" id="searchBar" placeholder="Who's that Pokémon?" style="text-align: center;">
+            <img src="search.png" alt="" class="searchButton" onclick="checkName()">
+        </div>
         <ul id="autoCompleteList" class="autoCompleteList"></ul>
     </div>
 
 
-    <button class="hintButton" id="hintButton">New Hint</button>
-    <p class="hintsLeft" id="hintsLeft">Hints Left: 5</p>
-    <p class="guessesLeft" id="guessesLeft">Guesses Left: 3</p>
-    <button id="giveUpButton" onclick="giveUp()">Give Up</button>
-    <button id="newPokemon">New pokémon</button>
-
     
+        <button class="hintButton" id="hintButton">New Hint</button>
+    <div id="leftText">
+        <p class="hintsLeft" id="hintsLeft">Hints Left: 5</p>
+        <p class="guessesLeft" id="guessesLeft">Guesses Left: 3</p>
+    </div>
+    <button id="giveUpButton" onclick="giveUp()">Give Up</button>
     
     <h1 id="name">Name</h1>
-
     <div class="image" id="image"></div>
 
+    <button id="newPokemon">New pokémon</button>
     
+    <div class="generationSelectorContainer" id="generationSelectorContainer">
+        <button id="kanto" class="regionButton">Kanto</button>
+        <button id="johto" class="regionButton">Johto</button>
+        <button id="hoenn" class="regionButton">Hoenn</button>
+        <button id="sinnoh" class="regionButton">Sinnoh</button>
+        <button id="unova" class="regionButton">Unova</button>
+        <button id="kalos" class="regionButton">Kalos</button>
+        <button id="alola" class="regionButton">Alola</button>
+        <button id="galar" class="regionButton">Galar</button>
+    </div>
+    
+
 
     <div class="typesAndRegionContainer">
         <div class="types" id="types">
@@ -47,11 +69,12 @@
             <div class="dexEntry2" id="pokedexEntry2"></div>
         </div>
     
-        <div class="heightAndWeightContainer">
+        <div class="heightAndWeightContainer" id="heightAndWeightContainer">
             <div class="weight" id="weight"></div>
             <div class="height" id="height"></div>
         </div>
     </div>
+    
         
     <script src="index.js"></script>
 </body>

@@ -1,4 +1,3 @@
-
 let dexEntry;
 let dexEntry1;
 let dexEntry2;
@@ -10,321 +9,49 @@ let typeArray = [];
 let img1 = new Image();
 let img2 = new Image();
 let singleType;
+let globalIdNum;
 
-const pokemonA = [
-    "Abomasnow",
-    "Abra",
-    "Absol",
-    "Accelgor",
-    "Aegislash",
-    "Aerodactyl",
-    "Aggron",
-    "Aipom",
-    "Alakazam",
-    "Alcremie",
-    "Alomomola",
-    "Altaria",
-    "Amaura",
-    "Ambipom",
-    "Amoonguss",
-    "Ampharos",
-    "Anorith",
-    "Appletun",
-    "Applin",
-    "Araquanid",
-    "Arbok",
-    "Arcanine",
-    "Arceus",
-    "Archen",
-    "Archeops",
-    "Arctovish",
-    "Arctozolt",
-    "Ariados",
-    "Armaldo",
-    "Aromatisse",
-    "Aron",
-    "Arrokuda",
-    "Articuno",
-    "Audino",
-    "Aurorus",
-    "Avalugg",
-    "Axew",
-    "Azelf",
-    "Azumarill",
-    "Azurill"
-];
-
-const pokemonB = [
-    "Bagon",
-    "Baltoy",
-    "Banette",
-    "Barbaracle",
-    "Barboach",
-    "Barraskewda",
-    "Basculin",
-    "Bastiodon",
-    "Bayleef",
-    "Beartic",
-    "Beautifly",
-    "Beedrill",
-    "Beheeyem",
-    "Beldum",
-    "Bellossom",
-    "Bellsprout",
-    "Bergmite",
-    "Bewear",
-    "Bibarel",
-    "Bidoof",
-    "Binacle",
-    "Bisharp",
-    "Blacephalon",
-    "Blastoise",
-    "Blaziken",
-    "Blipbug",
-    "Blissey",
-    "Blitzle",
-    "Boldore",
-    "Boltund",
-    "Bonsly",
-    "Bouffalant",
-    "Bounsweet",
-    "Braixen",
-    "Braviary",
-    "Breloom",
-    "Brionne",
-    "Bronzong",
-    "Bronzor",
-    "Bruxish",
-    "Budew",
-    "Buizel",
-    "Bulbasaur",
-    "Buneary",
-    "Bunnelby",
-    "Burmy",
-    "Butterfree",
-    "Buzzwole"
-];
-
-const pokemonC = [
-    "Cacnea",
-    "Cacturne",
-    "Calyrex",
-    "Camerupt",
-    "Carbink",
-    "Carkol",
-    "Carnivine",
-    "Carracosta",
-    "Carvanha",
-    "Cascoon",
-    "Castform",
-    "Caterpie",
-    "Celebi",
-    "Celesteela",
-    "Centiskorch",
-    "Chandelure",
-    "Chansey",
-    "Charizard",
-    "Charjabug",
-    "Charmander",
-    "Charmeleon",
-    "Chatot",
-    "Cherrim",
-    "Cherubi",
-    "Chesnaught",
-    "Chespin",
-    "Chewtle",
-    "Chikorita",
-    "Chimchar",
-    "Chimecho",
-    "Chinchou",
-    "Chingling",
-    "Cinccino",
-    "Cinderace",
-    "Clamperl",
-    "Clauncher",
-    "Clawitzer",
-    "Claydol",
-    "Clefable",
-    "Clefairy",
-    "Cleffa",
-    "Clobbopus",
-    "Cloyster",
-    "Coalossal",
-    "Cobalion",
-    "Cofagrigus",
-    "Combee",
-    "Combusken",
-    "Comfey",
-    "Conkeldurr",
-    "Copperajah",
-    "Corphish",
-    "Corsola",
-    "Corviknight",
-    "Corvisquire",
-    "Cosmoem",
-    "Cosmog",
-    "Cottonee",
-    "Crabominable",
-    "Crabrawler",
-    "Cradily",
-    "Cramorant",
-    "Cranidos",
-    "Crawdaunt",
-    "Cresselia",
-    "Croagunk",
-    "Crobat",
-    "Croconaw",
-    "Crustle",
-    "Cryogonal",
-    "Cubchoo",
-    "Cubone",
-    "Cufant",
-    "Cursola",
-    "Cutiefly",
-    "Cyndaquil",
-];
-
-const pokemonD = [
-    "Darkrai",
-    "Darmanitan",
-    "Dartrix",
-    "Darumaka",
-    "Decidueye",
-    "Dedenne",
-    "Deerling",
-    "Deino",
-    "Delcatty",
-    "Delibird",
-    "Delphox",
-    "Deoxys",
-    "Dewgong",
-    "Dewott",
-    "Dewpider",
-    "Dhelmise",
-    "Dialga",
-    "Diancie",
-    "Diggersby",
-    "Diglett",
-    "Ditto",
-    "Dodrio",
-    "Doduo",
-    "Donphan",
-    "Dottler",
-    "Doublade",
-    "Dracovish",
-    "Dracozolt",
-    "Dragalge",
-    "Dragapult",
-    "Dragonair",
-    "Dragonite",
-    "Drakloak",
-    "Drampa",
-    "Drapion",
-    "Dratini",
-    "Drednaw",
-    "Dreepy",
-    "Drifblim",
-    "Drifloon",
-    "Drilbur",
-    "Drizzile",
-    "Drowzee",
-    "Druddigon",
-    "Dubwool",
-    "Ducklett",
-    "Dugtrio",
-    "Dunsparce",
-    "Duosion",
-    "Duraludon",
-    "Durant",
-    "Dusclops",
-    "Dusknoir",
-    "Duskull",
-    "Dustox",
-    "Dwebble"
-];
-
-const pokemonE = [
-    "Eelektrik",
-    "Eelektross",
-    "Eevee",
-    "Eiscue",
-    "Ekans",
-    "Eldegoss",
-    "Electabuzz",
-    "Electivire",
-    "Electrike",
-    "Electrode",
-    "Elekid",
-    "Elgyem",
-    "Emboar",
-    "Emolga",
-    "Empoleon",
-    "Entei",
-    "Escavalier",
-    "Espeon",
-    "Espurr",
-    "Eternatus",
-    "Excadrill",
-    "Exeggcute",
-    "Exeggutor",
-    "Exploud"
-]
-
+const pokemonA = ["Abomasnow", "Abra", "Absol", "Accelgor", "Aegislash", "Aerodactyl", "Aggron", "Aipom", "Alakazam", "Alcremie", "Alomomola", "Altaria", "Amaura", "Ambipom", "Amoonguss", "Ampharos", "Anorith", "Appletun", "Applin", "Araquanid", "Arbok", "Arcanine", "Arceus", "Archen", "Archeops", "Arctovish", "Arctozolt", "Ariados", "Armaldo", "Aromatisse", "Aron", "Arrokuda", "Articuno", "Audino", "Aurorus", "Avalugg", "Axew", "Azelf", "Azumarill", "Azurill"];
+const pokemonB = ["Bagon", "Baltoy", "Banette", "Barbaracle", "Barboach", "Barraskewda", "Basculin", "Bastiodon", "Bayleef", "Beartic", "Beautifly", "Beedrill", "Beheeyem", "Beldum", "Bellossom", "Bellsprout", "Bergmite", "Bewear", "Bibarel", "Bidoof", "Binacle", "Bisharp", "Blacephalon", "Blastoise", "Blaziken", "Blipbug", "Blissey", "Blitzle", "Boldore", "Boltund", "Bonsly", "Bouffalant", "Bounsweet", "Braixen", "Braviary", "Breloom", "Brionne", "Bronzong", "Bronzor", "Bruxish", "Budew", "Buizel", "Bulbasaur", "Buneary", "Bunnelby", "Burmy", "Butterfree", "Buzzwole"];
+const pokemonC = ["Cacnea", "Cacturne", "Calyrex", "Camerupt", "Carbink", "Carkol", "Carnivine", "Carracosta", "Carvanha", "Cascoon", "Castform", "Caterpie", "Celebi", "Celesteela", "Centiskorch", "Chandelure", "Chansey", "Charizard", "Charjabug", "Charmander", "Charmeleon", "Chatot", "Cherrim", "Cherubi", "Chesnaught", "Chespin", "Chewtle", "Chikorita", "Chimchar", "Chimecho", "Chinchou", "Chingling", "Cinccino", "Cinderace", "Clamperl", "Clauncher", "Clawitzer", "Claydol", "Clefable", "Clefairy", "Cleffa", "Clobbopus", "Cloyster", "Coalossal", "Cobalion", "Cofagrigus", "Combee", "Combusken", "Comfey", "Conkeldurr", "Copperajah", "Corphish", "Corsola", "Corviknight", "Corvisquire", "Cosmoem", "Cosmog", "Cottonee", "Crabominable", "Crabrawler", "Cradily", "Cramorant", "Cranidos", "Crawdaunt", "Cresselia", "Croagunk", "Crobat", "Croconaw", "Crustle", "Cryogonal", "Cubchoo", "Cubone", "Cufant", "Cursola", "Cutiefly", "Cyndaquil"];
+const pokemonD = ["Darkrai", "Darmanitan", "Dartrix", "Darumaka", "Decidueye", "Dedenne", "Deerling", "Deino", "Delcatty", "Delibird", "Delphox", "Deoxys", "Dewgong", "Dewott", "Dewpider", "Dhelmise", "Dialga", "Diancie", "Diggersby", "Diglett", "Ditto", "Dodrio", "Doduo", "Donphan", "Dottler", "Doublade", "Dracovish", "Dracozolt", "Dragalge", "Dragapult", "Dragonair", "Dragonite", "Drakloak", "Drampa", "Drapion", "Dratini", "Drednaw", "Dreepy", "Drifblim", "Drifloon", "Drilbur", "Drizzile", "Drowzee", "Druddigon", "Dubwool", "Ducklett", "Dugtrio", "Dunsparce", "Duosion", "Duraludon", "Durant", "Dusclops", "Dusknoir", "Duskull", "Dustox", "Dwebble"];
+const pokemonE = ["Eelektrik", "Eelektross", "Eevee", "Eiscue", "Ekans", "Eldegoss", "Electabuzz", "Electivire", "Electrike", "Electrode", "Elekid", "Elgyem", "Emboar", "Emolga", "Empoleon", "Entei", "Escavalier", "Espeon", "Espurr", "Eternatus", "Excadrill", "Exeggcute", "Exeggutor", "Exploud"];
 const pokemonF = [  "Falinks",  "Farfetch'd",  "Fearow",  "Feebas",  "Fennekin",  "Feraligatr",  "Ferroseed",  "Ferrothorn",  "Finneon",  "Flaaffy",  "Flabébé",  "Flapple",  "Flareon",  "Fletchinder",  "Fletchling",  "Floatzel",  "Floette",  "Florges",  "Flygon",  "Fomantis",  "Foongus",  "Forretress",  "Fraxure",  "Frillish",  "Froakie",  "Frogadier",  "Froslass",  "Frosmoth",  "Furfrou",  "Furret"]
-
 const pokemonG = [  "Gabite",  "Gallade",  "Galvantula",  "Garbodor",  "Garchomp",  "Gardevoir",  "Gastly",  "Gastrodon",  "Genesect",  "Gengar",  "Geodude",  "Gible",  "Gigalith",  "Girafarig",  "Giratina",  "Glaceon",  "Glalie",  "Glameow",  "Glastrier",  "Gligar",  "Gliscor",  "Gloom",  "Gogoat",  "Golbat",  "Goldeen",  "Golduck",  "Golem",  "Golett",  "Golisopod",  "Golurk",  "Goodra",  "Goomy",  "Gorebyss",  "Gossifleur",  "Gothita",  "Gothitelle",  "Gothorita",  "Gourgeist",  "Granbull",  "Grapploct",  "Graveler",  "Greedent",  "Greninja",  "Grimer",  "Grimmsnarl",  "Grookey",  "Grotle",  "Groudon",  "Grovyle",  "Growlithe",  "Grubbin",  "Grumpig",  "Gulpin",  "Gumshoos",  "Gurdurr",  "Guzzlord",  "Gyarados"]
-
 const pokemonH = [  'Hakamo-o',  'Happiny',  'Hariyama',  'Hatenna',  'Hatterene',  'Hattrem',  'Haunter',  'Hawlucha',  'Haxorus',  'Heatmor',  'Heatran',  'Heliolisk',  'Helioptile',  'Heracross',  'Herdier',  'Hippopotas',  'Hippowdon',  'Hitmonchan',  'Hitmonlee',  'Hitmontop',  'Honchkrow',  'Honedge',  'Ho-Oh',  'Hoopa',  'Hoothoot',  'Hoppip',  'Horsea',  'Houndoom',  'Houndour',  'Huntail',  'Hydreigon',  'Hypno']
-
 const pokemonI = [    "Igglybuff",    "Illumise",    "Impidimp",    "Incineroar",    "Indeedee",    "Infernape",    "Inkay",    "Inteleon",    "Ivysaur"]
-
-const pokemonJ = [
-    "Jangmo-o",
-    "Jellicent",
-    "Jigglypuff",
-    "Jirachi",
-    "Jolteon",
-    "Joltik",
-    "Jumpluff",
-    "Jynx"
-]
-
+const pokemonJ = ["Jangmo-o", "Jellicent", "Jigglypuff", "Jirachi", "Jolteon", "Joltik", "Jumpluff", "Jynx"];
 const pokemonK = [    "Kabuto",    "Kabutops",    "Kadabra",    "Kakuna",    "Kangaskhan",    "Karrablast",    "Kartana",    "Kecleon",    "Keldeo",    "Kingdra",    "Kingler",    "Kirlia",    "Klang",    "Klefki",    "Klink",    "Klinklang",    "Koffing",    "Komala",    "Kommo-o",    "Krabby",    "Kricketot",    "Kricketune",    "Krokorok",    "Krookodile",    "Kubfu",    "Kyogre",    "Kyurem"]
-
 const pokemonL = [  "Lairon",  "Lampent",  "Landorus",  "Lanturn",  "Lapras",  "Larvesta",  "Larvitar",  "Latias",  "Latios",  "Leafeon",  "Leavanny",  "Ledian",  "Ledyba",  "Lickilicky",  "Lickitung",  "Liepard",  "Lileep",  "Lilligant",  "Lillipup",  "Linoone",  "Litleo",  "Litten",  "Litwick",  "Lombre",  "Lopunny",  "Lotad",  "Loudred",  "Lucario",  "Ludicolo",  "Lugia",  "Lumineon",  "Lunala",  "Lunatone",  "Lurantis",  "Luvdisc",  "Luxio",  "Luxray",  "Lycanroc"]
-
 const pokemonM = [  "Machamp",  "Machoke",  "Machop",  "Magby",  "Magcargo",  "Magearna",  "Magikarp",  "Magmar",  "Magmortar",  "Magnemite",  "Magneton",  "Magnezone",  "Makuhita",  "Malamar",  "Mamoswine",  "Manaphy",  "Mandibuzz",  "Manectric",  "Mankey",  "Mantine",  "Mantyke",  "Maractus",  "Mareanie",  "Mareep",  "Marill",  "Marowak",  "Marshadow",  "Marshtomp",  "Masquerain",  "Mawile",  "Medicham",  "Meditite",  "Meganium",  "Melmetal",  "Meloetta",  "Meltan",  "Meowstic",  "Meowth",  "Mesprit",  "Metagross",  "Metang",  "Metapod",  "Mew",  "Mewtwo",  "Mienfoo",  "Mienshao",  "Mightyena",  "Milcery",  "Milotic",  "Miltank",  "Mime Jr.",  "Mimikyu",  "Minccino",  "Minior",  "Minun",  "Misdreavus",  "Mismagius",  "Moltres",  "Monferno",  "Morelull",  "Morgrem",  "Morpeko",  "Mothim",  "Mr. Mime",  "Mr. Rime",  "Mudbray",  "Mudkip",  "Mudsdale",  "Muk",  "Munchlax",  "Munna",  "Murkrow",  "Musharna"]
-
 const pokemonN = [    "Naganadel",    "Natu",    "Necrozma",    "Nickit",    "Nidoking",    "Nidoqueen",    "Nidoran♀",    "Nidoran♂",    "Nidorina",    "Nidorino",    "Nihilego",    "Nincada",    "Ninetales",    "Ninjask",    "Noctowl",    "Noibat",    "Noivern",    "Nosepass",    "Numel",    "Nuzleaf"]
-
 const pokemonO = [  "Obstagoon",  "Octillery",  "Oddish",  "Omanyte",  "Omastar",  "Onix",  "Oranguru",  "Orbeetle",  "Oricorio",  "Oshawott"]
-
 const pokemonP = [    'Pachirisu',    'Palkia',    'Palossand',    'Palpitoad',    'Pancham',    'Pangoro',    'Panpour',    'Pansage',    'Pansear',    'Paras',    'Parasect',    'Passimian',    'Patrat',    'Pawniard',    'Pelipper',    'Perrserker',    'Persian',    'Petilil',    'Phanpy',    'Phantump',    'Pheromosa',    'Phione',    'Pichu',    'Pidgeot',    'Pidgeotto',    'Pidgey',    'Pidove',    'Pignite',    'Pikachu',    'Pikipek',    'Piloswine',    'Pincurchin',    'Pineco',    'Pinsir',    'Piplup',    'Plusle',    'Poipole',    'Politoed',    'Poliwag',    'Poliwhirl',    'Poliwrath',    'Polteageist',    'Ponyta',    'Poochyena',    'Popplio',    'Porygon',    'Porygon2',    'Porygon-Z',    'Primarina',    'Primeape',    'Prinplup',    'Probopass',    'Psyduck',    'Pumpkaboo',    'Pupitar',    'Purrloin',    'Purugly',    'Pyroar',    'Pyukumuku']
-
 const pokemonQ = [    "Quagsire",    "Quilava",    "Quilladin",    "Qwilfish"]
-
 const pokemonR = [  "Raboot",  "Raichu",  "Raikou",  "Ralts",  "Rampardos",  "Rapidash",  "Raticate",  "Rattata",  "Rayquaza",  "Regice",  "Regidrago",  "Regieleki",  "Regigigas",  "Regirock",  "Registeel",  "Relicanth",  "Remoraid",  "Reshiram",  "Reuniclus",  "Rhydon",  "Rhyhorn",  "Rhyperior",  "Ribombee",  "Rillaboom",  "Riolu",  "Rockruff",  "Roggenrola",  "Rolycoly",  "Rookidee",  "Roselia",  "Roserade",  "Rotom",  "Rowlet",  "Rufflet",  "Runerigus"]
-
 const pokemonS = [    'Sableye',    'Salamence',    'Salandit',    'Salazzle',    'Samurott',    'Sandaconda',    'Sandile',    'Sandshrew',    'Sandslash',    'Sandygast',    'Sawk',    'Sawsbuck',    'Scatterbug',    'Sceptile',    'Scizor',    'Scolipede',    'Scorbunny',    'Scrafty',    'Scraggy',    'Scyther',    'Seadra',    'Seaking',    'Sealeo',    'Seedot',    'Seel',    'Seismitoad',    'Sentret',    'Serperior',    'Servine',    'Seviper',    'Sewaddle',    'Sharpedo',    'Shaymin',    'Shedinja',    'Shelgon',    'Shellder',    'Shellos',    'Shelmet',    'Shieldon',    'Shiftry',    'Shiinotic',    'Shinx',    'Shroomish',    'Shuckle',    'Shuppet',    'Sigilyph',    'Silcoon',    'Silicobra',    'Silvally',    'Simipour',    'Simisage',    'Simisear',    'Sinistea',    'Sirfetch\'d',    'Sizzlipede',    'Skarmory',    'Skiddo',    'Skiploom',    'Skitty',    'Skorupi',    'Skrelp',    'Skuntank',    'Skwovet',    'Slaking',    'Slakoth',    'Sliggoo',    'Slowbro',    'Slowking',    'Slowpoke',    'Slugma',    'Slurpuff',    'Smeargle',    'Smoochum',    'Sneasel',    'Snivy',    'Snom',    'Snorlax',    'Snorunt',    'Snover',    'Snubbull',    'Sobble',    'Solgaleo',    'Solosis',    'Solrock',    'Spearow',    'Spectrier',    'Spewpa',    'Spheal',    'Spinarak',    'Spinda',    'Spiritomb',    'Spoink',    'Spritzee',    'Squirtle',    'Stakataka',    'Stantler',    'Staraptor',    'Staravia',    'Starly',    'Starmie',    'Staryu',    'Steelix',    'Steenee',    'Stonjourner',    'Stoutland',    'Stufful',    'Stunfisk',    'Stunky',    'Sudowoodo',    'Suicune',    'Sunflora',    'Sunkern',    'Surskit',    'Swablu',    'Swadloon',    'Swalot',    'Swampert',    'Swanna',    'Swellow',    'Swinub',    'Swirlix',    'Swoobat',    'Sylveon']
-
 const pokemonT = [    "Taillow",    "Talonflame",    "Tangela",    "Tangrowth",    "Tapu Bulu",    "Tapu Fini",    "Tapu Koko",    "Tapu Lele",    "Tauros",    "Teddiursa",    "Tentacool",    "Tentacruel",    "Tepig",    "Terrakion",    "Thievul",    "Throh",    "Thundurus",    "Thwackey",    "Timburr",    "Tirtouga",    "Togedemaru",    "Togekiss",    "Togepi",    "Togetic",    "Torchic",    "Torkoal",    "Tornadus",    "Torracat",    "Torterra",    "Totodile",    "Toucannon",    "Toxapex",    "Toxel",    "Toxicroak",    "Toxtricity",    "Tranquill",    "Trapinch",    "Treecko",    "Trevenant",    "Tropius",    "Trubbish",    "Trumbeak",    "Tsareena",    "Turtonator",    "Turtwig",    "Tympole",    "Tynamo",    "Type: Null",    "Typhlosion",    "Tyranitar",    "Tyrantrum",    "Tyrogue",    "Tyrunt"]
-
 const pokemonU = ["Umbreon", "Unfezant", "Unown", "Ursaring", "Urshifu", "Uxie"]
-
 const pokemonV = [    "Vanillish",    "Vanillite",    "Vanilluxe",    "Vaporeon",    "Venipede",    "Venomoth",    "Venonat",    "Venusaur",    "Vespiquen",    "Vibrava",    "Victini",    "Victreebel",    "Vigoroth",    "Vikavolt",    "Vileplume",    "Virizion",    "Vivillon",    "Volbeat",    "Volcanion",    "Volcarona",    "Voltorb",    "Vullaby",    "Vulpix"]
-
 const pokemonW = [    "Wailmer",    "Wailord",    "Walrein",    "Wartortle",    "Watchog",    "Weavile",    "Weedle",    "Weepinbell",    "Weezing",    "Whimsicott",    "Whirlipede",    "Whiscash",    "Whismur",    "Wigglytuff",    "Wimpod",    "Wingull",    "Wishiwashi",    "Wobbuffet",    "Woobat",    "Wooloo",    "Wooper",    "Wormadam",    "Wurmple",    "Wynaut"]
-
 const pokemonX = [  "Xatu",  "Xerneas",  "Xurkitree"]
-
 const pokemonY = ["Yamask", "Yamper", "Yanma", "Yanmega", "Yungoos", "Yveltal"]
-
 const pokemonZ = [  "Zacian",  "Zamazenta",  "Zangoose",  "Zapdos",  "Zarude",  "Zebstrika",  "Zekrom",  "Zeraora",  "Zigzagoon",  "Zoroark",  "Zorua",  "Zubat",  "Zweilous",  "Zygarde"]
+
+const allPokemonNames = [...pokemonA, ...pokemonB, ...pokemonC, ...pokemonD, ...pokemonE, ...pokemonF, ...pokemonG, ...pokemonH, ...pokemonI, ...pokemonJ, ...pokemonK, ...pokemonL, ...pokemonM, ...pokemonN, ...pokemonO, ...pokemonP, ...pokemonQ, ...pokemonR, ...pokemonS, ...pokemonT, ...pokemonU, ...pokemonV, pokemonW, ...pokemonX, ...pokemonY, ...pokemonZ]
+
 
 
 
 const searchBar = document.getElementById('searchBar');
 const originalPlaceholder = searchBar.getAttribute('placeholder');
+
+document.querySelector('body').addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() === 'li') {
+      searchBar.value = event.target.textContent;
+        
+    }
+  });
 
 searchBar.addEventListener('focus', function() {
   searchBar.removeAttribute('placeholder');
@@ -339,75 +66,36 @@ document.querySelector("#autoCompleteList").style.height = "0";
 document.querySelector("#autoCompleteList").style.display = "none";
 
 const searchInput = document.querySelector("#searchBar");
-// const searchWrapper = document.querySelector("#")
+document.addEventListener("click", function(e) {
+    if (e.target.tagName.toLowerCase() === 'li') {
+        searchBar.value = e.target.textContent;
+        document.querySelector("#autoCompleteList").style.display = "none";
+          
+    } 
+    else if (e.target !== searchInput) {
+        // searchInput.value = "";
+        document.querySelector("#autoCompleteList").style.display = "none";
+    } 
+})
 
+
+
+
+
+
+
+
+
+
+
+
+//Function that autocomplete names in the search bar
 searchInput.addEventListener('keyup', () => {
 
     let results = [];
     let input = searchInput.value;
 
-    // switch(searchInput.charAt(0)){
-    //     case 'a': 
-    //         results = [];
-    //         input = searchInput.value;
-    //         if (input.length > 0) {
-    //             results = pokemonA.filter((item) => {
-    //                 return item.toLowerCase().includes(input.toLowerCase());
-    //             });
-    //         }
-    //         renderResults(results);
-    //         break;
-    //     case 'b': 
-    //         results = [];
-    //         input = searchInput.value;
-    //         if (input.length > 0) {
-    //             results = pokemonB.filter((item) => {
-    //                 return item.toLowerCase().includes(input.toLowerCase());
-    //             });
-    //         }
-    //         renderResults(results);
-    //         break;
-    // }
-
-    // results = [];
-    // input = searchInput.value;
-    // if (input.length > 0) {
-    //     results = pokemonA.filter((item) => {
-    //         return item.toLowerCase().includes(input.toLowerCase());
-    //     });
-    // }
-    // renderResults(results);
-
-
-
-    const pokemonByLetter = {
-        a: pokemonA,
-        b: pokemonB,
-        c: pokemonC,
-        d: pokemonD,
-        e: pokemonE,
-        f: pokemonF,
-        g: pokemonG,
-        h: pokemonH,
-        i: pokemonI,
-        j: pokemonJ,
-        k: pokemonK,
-        l: pokemonL,
-        m: pokemonM,
-        n: pokemonN,
-        o: pokemonO,
-        p: pokemonP,
-        q: pokemonQ,
-        r: pokemonR,
-        s: pokemonS,
-        t: pokemonT,
-        u: pokemonU,
-        v: pokemonV,
-        w: pokemonW,
-        x: pokemonX,
-        y: pokemonY,
-        z: pokemonZ
-    };      
+    const pokemonByLetter = { a: pokemonA, b: pokemonB, c: pokemonC, d: pokemonD, e: pokemonE, f: pokemonF, g: pokemonG, h: pokemonH, i: pokemonI, j: pokemonJ, k: pokemonK, l: pokemonL, m: pokemonM, n: pokemonN, o: pokemonO, p: pokemonP, q: pokemonQ, r: pokemonR, s: pokemonS, t: pokemonT, u: pokemonU, v: pokemonV, w: pokemonW, x: pokemonX, y: pokemonY, z: pokemonZ };      
       
       const firstLetter = searchInput.value.charAt(0).toLowerCase();
       const pokemonList = pokemonByLetter[firstLetter] || [];
@@ -420,10 +108,9 @@ searchInput.addEventListener('keyup', () => {
         });
       }
       renderResults(results);
-
-
 });
 
+//
 function renderResults(results) {
     if (!results.length){
         document.querySelector("#autoCompleteList").style.height = "0";
@@ -443,62 +130,137 @@ function renderResults(results) {
 
 
 
+//Generation buttons
+const buttons = document.querySelectorAll(".regionButton");
+const buttonStates = new Array(buttons.length).fill(false);
+
+buttons.forEach((button, index) => {
+  button.addEventListener("click", (event) => {
+    button.style.color = (button.style.color === "white") ? "grey" : "white";
+    buttonStates[index] = !buttonStates[index];
+  });
+});
 
 
 
-
-
-// {
-// document.querySelector("#kanto").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 151) + 1);
-// });
-
-// document.querySelector("#johto").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 100) + 152);
-// });
-
-// document.querySelector("#hoenn").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 135) + 252);
-// });
-
-// document.querySelector("#sinnoh").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 107) + 387);
-// });
-
-// document.querySelector("#unova").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 156) + 494);
-// });
-
-// document.querySelector("#kalos").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 72) + 650);
-// });
-
-// document.querySelector("#alola").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 88) + 722);
-// });
-
-// document.querySelector("#galar").addEventListener("click", (event) => {
-//     event.preventDefault();
-//     getPokemon(Math.floor(Math.random() * 96) + 810);
-// });
-// }
-
-
-
-//Just picks a random pokemon on load
-getPokemon(Math.floor(Math.random() * 890) + 1);
 
 //New pokemon button
 document.querySelector("#newPokemon").addEventListener("click", (event) => {
-    getPokemon(Math.floor(Math.random() * 890) + 1);
+    generateRandomNumber();
 });
+
+//Helper function for newPokemon that generates a random number based off the generations selected
+function generateRandomNumber() {
+    let noneSelected = false;
+    let numberOfGenerations = 0;
+    let randomNumber;
+  
+    while (noneSelected === false) {
+      const enabledRanges = [];
+  
+      buttonStates.forEach((state, index) => {
+        if (state) {
+          switch (index) {
+            case 0:
+              enabledRanges.push({ rangeStart: 1, rangeEnd: 151 });
+              break;
+            case 1:
+              enabledRanges.push({ rangeStart: 152, rangeEnd: 251 });
+              break;
+            case 2:
+              enabledRanges.push({ rangeStart: 252, rangeEnd: 386 });
+              break;
+            case 3:
+              enabledRanges.push({ rangeStart: 387, rangeEnd: 493 });
+              break;
+            case 4:
+              enabledRanges.push({ rangeStart: 494, rangeEnd: 649 });
+              break;
+            case 5:
+              enabledRanges.push({ rangeStart: 650, rangeEnd: 721 });
+              break;
+            case 6:
+              enabledRanges.push({ rangeStart: 722, rangeEnd: 809 });
+              break;
+            case 7:
+              enabledRanges.push({ rangeStart: 810, rangeEnd: 905 });
+              break;
+            default:
+              break;
+          }
+          numberOfGenerations++;
+        }
+      });
+  
+      if (enabledRanges.length === 0) {
+        window.alert("No generations are selected. Please select at least one generation.");
+        noneSelected = true;
+      } else {
+        const selectedRange = enabledRanges[Math.floor(Math.random() * enabledRanges.length)];
+        randomNumber = Math.floor(Math.random() * (selectedRange.rangeEnd - selectedRange.rangeStart + 1)) + selectedRange.rangeStart;
+        getPokemon(randomNumber);
+
+        if (numberOfGenerations === 1){
+            stripeColor(getRegion(randomNumber));
+        } else {
+            document.getElementById("stripe1").style.backgroundColor = "red";
+            document.getElementById("stripe2").style.backgroundColor = "blue";
+            document.getElementById("stripe3").style.backgroundColor = "green";
+        }
+        return;
+      }
+    }
+}
+
+//Changes the color of the background stripes to match the generation
+function stripeColor(generation){
+    console.log(generation);
+    switch(generation){
+        case "Kanto":
+            document.getElementById("stripe1").style.backgroundColor = "rgb(225, 12, 16)";
+            document.getElementById("stripe2").style.backgroundColor = "rgb(55, 101, 255)";
+            document.getElementById("stripe3").style.backgroundColor = "rgb(39, 178, 1)";
+            break;
+        case "Johto":
+            document.getElementById("stripe1").style.backgroundColor = "rgb(193, 175, 70)";
+            document.getElementById("stripe2").style.backgroundColor = "silver";
+            document.getElementById("stripe3").style.backgroundColor = "rgb(19, 177, 163)";
+            break; 
+        case "Hoenn":
+            document.getElementById("stripe1").style.backgroundColor = "rgb(140, 0, 0)";
+            document.getElementById("stripe2").style.backgroundColor = "rgb(0, 115, 177)";
+            document.getElementById("stripe3").style.backgroundColor = "rgb(0, 166, 78)";
+            break;  
+        case "Sinnoh":
+            document.getElementById("stripe1").style.backgroundColor = "rgb(76, 160, 177)";
+            document.getElementById("stripe2").style.backgroundColor = "rgb(220, 145, 170)";
+            document.getElementById("stripe3").style.backgroundColor = "rgb(223, 202, 233)";
+            break; 
+        case "Unova":
+            document.getElementById("stripe1").style.backgroundColor = "black";
+            document.getElementById("stripe2").style.backgroundColor = "grey";
+            document.getElementById("stripe3").style.backgroundColor = "white";
+            break; 
+        case "Kalos":
+            //Fix these they look like shit
+            document.getElementById("stripe1").style.backgroundColor = "rgb(61, 184, 179)";
+            document.getElementById("stripe2").style.backgroundColor = "rgb(220, 48, 34)";
+            document.getElementById("stripe3").style.backgroundColor = "rgb(124, 202, 100)";
+            break; 
+        case "Alola":    
+            //Fix these they look like shit
+            document.getElementById("stripe1").style.backgroundColor = "rgb(247, 153, 27)";
+            document.getElementById("stripe2").style.backgroundColor = "rgb(25, 150, 212)";
+            document.getElementById("stripe3").style.backgroundColor = "black";
+            break; 
+        case "Galar":    
+            document.getElementById("stripe1").style.backgroundColor = "rgb(151, 36, 29)";
+            document.getElementById("stripe2").style.backgroundColor = "rgb(78, 29, 111)";
+            document.getElementById("stripe3").style.backgroundColor = "black"; //I really don't know what color this should be
+            break;                  
+    }
+}
+
 
 
 //New hint function
@@ -512,6 +274,8 @@ document.querySelector("#hintButton").addEventListener("click", (event) => {
                 case 1:
                     if (visibleHint[0] === false){
                         document.querySelector("#height").style.display = "flex";
+                        document.getElementById("heightAndWeightContainer").style.minWidth = "35%";
+                        document.getElementById("heightAndWeightContainer").style.padding = "2%";
                         visibleHint[0] = true;
                         loopFlag = false;
                     }
@@ -540,6 +304,8 @@ document.querySelector("#hintButton").addEventListener("click", (event) => {
                 case 5:
                     if (visibleHint[4] === false){
                         document.querySelector("#weight").style.display = "flex";
+                        document.getElementById("heightAndWeightContainer").style.minWidth = "35%";
+                        document.getElementById("heightAndWeightContainer").style.padding = "2%";
                         visibleHint[4] = true;
                         loopFlag = false;
                     }
@@ -581,15 +347,55 @@ function checkName(){
         document.querySelector("#region").style.display = "flex";
         document.querySelector("#weight").style.display = "flex";
         document.querySelector("#height").style.display = "flex";
+        document.getElementById("heightAndWeightContainer").style.minWidth = "35%";
+        document.getElementById("heightAndWeightContainer").style.padding = "2%";
+        document.getElementById("newPokemon").style.display = "flex";
+        document.getElementById("generationSelectorContainer").style.display = "flex";
+        
+
+        document.getElementById("results").style.display = "none";
+        document.getElementById("hintButton").style.display = "none";
+        document.getElementById("leftText").style.display = "none";
+        document.getElementById("giveUpButton").style.display = "none";
+
+        stripeColor(getRegion(globalIdNum));
+        screenFlash("right");
     } else{
-        numberOfGuessesLeft--;
-        document.querySelector("#guessesLeft").innerHTML = `Guesses Left: ${numberOfGuessesLeft}`;
+        if (numberOfGuessesLeft > 1){
+            numberOfGuessesLeft--;
+            document.querySelector("#guessesLeft").innerHTML = `Guesses Left: ${numberOfGuessesLeft}`;
+            screenFlash("wrong")
+        } 
+        else if (numberOfGuessesLeft === 1){
+            numberOfGuessesLeft--;
+            document.querySelector("#guessesLeft").innerHTML = `Guesses Left: ${numberOfGuessesLeft}`;
+            window.alert("You lost...")
+            screenFlash("wrong")
+            giveUp();
+        }   
     }
 }
 
 
+function screenFlash(inputString){
+    if (inputString === "wrong"){
+        document.querySelector("#body").style.backgroundColor = "red";
+        setTimeout(function() {
+            document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
+        },  600);
+    } else {
+        document.querySelector("#body").style.backgroundColor = "green";
+        setTimeout(function() {
+            document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
+        },  600);
+    }
+}
+
+
+
 function giveUp() {
     console.log("giveUpButton clicked")
+    screenFlash("wrong")
     document.querySelector("#name").style.display = "flex";
     document.querySelector("#image").style.display = "flex";
     document.querySelector("#pokedexEntry2").style.display = "flex";
@@ -597,10 +403,20 @@ function giveUp() {
     document.querySelector("#region").style.display = "flex";
     document.querySelector("#weight").style.display = "flex";
     document.querySelector("#height").style.display = "flex";
+    document.getElementById("heightAndWeightContainer").style.minWidth = "35%";
+    document.getElementById("heightAndWeightContainer").style.padding = "2%";
+    document.getElementById("newPokemon").style.display = "flex";
+    document.getElementById("generationSelectorContainer").style.display = "flex";
 
-    //Sets hints to zero and updates the html
+    document.getElementById("results").style.display = "none";
+    document.getElementById("hintButton").style.display = "none";
+    document.getElementById("leftText").style.display = "none";
+    document.getElementById("giveUpButton").style.display = "none";
+
     numberOfHintsLeft = 0;
     document.querySelector("#hintsLeft").innerHTML = `Hints Left: ${numberOfHintsLeft}`;
+
+    stripeColor(getRegion(globalIdNum));
 }
 
 
@@ -667,6 +483,7 @@ function removeNameFromDexEntry(name, dexEntry){
   
 function getPokemon(idNumber){
     visibleHint = [false, false, false, false, false];
+    globalIdNum = idNumber;
     console.log(idNumber)
     getPokedexEntry1(idNumber)
     getPokedexEntry2(idNumber)
@@ -729,6 +546,17 @@ function getPokemon(idNumber){
             document.querySelector("#region").style.display = "none";
             document.querySelector("#weight").style.display = "none";
             document.querySelector("#height").style.display = "none";
+            document.getElementById("newPokemon").style.display = "none";
+            document.getElementById("generationSelectorContainer").style.display = "none";
+
+            document.getElementById("heightAndWeightContainer").style.minWidth = "0";
+            document.getElementById("heightAndWeightContainer").style.padding = "0%";
+
+            document.getElementById("results").style.display = "flex";
+            document.getElementById("hintButton").style.display = "flex";
+            document.getElementById("leftText").style.display = "flex";
+            document.getElementById("giveUpButton").style.display = "flex";
+            
 
             numberOfHintsLeft = 5;
             numberOfGuessesLeft = 3;
@@ -736,11 +564,14 @@ function getPokemon(idNumber){
             document.querySelector("#hintsLeft").innerHTML = `Hints Left: ${numberOfHintsLeft}`;
             document.querySelector("#guessesLeft").innerHTML = `Guesses Left: ${numberOfGuessesLeft}`;
 
+            const searchBar = document.getElementById('searchBar');
+            searchBar.value = "";
+
             console.log("end of getPokemon")
         });
     });
 
-    console.log("end of doc")
+
 }
 
 function setTypes(index, imgNumber){
@@ -767,5 +598,9 @@ function setTypes(index, imgNumber){
     }
 }
 
+
+
+//Just picks a random pokemon on load
+getPokemon(Math.floor(Math.random() * 890) + 1);
 
 

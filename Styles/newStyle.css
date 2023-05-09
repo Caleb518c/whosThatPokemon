@@ -1,21 +1,98 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 
+    .stripes {
+        position: absolute;
+        top: 400px;
+        /* left: -700px; */
+        z-index: -1;
+        min-height: 11%;
+        min-width: 150%;
+        display: flex;
+        flex-direction: column;
+        transform: rotate(25deg);
+    }
+    .stripe1 {
+        min-height: 10%;
+        min-width: 100%;
+        background-color: rgb(214, 55, 55);
+    }
+    .stripe2 {
+        min-height: 10%;
+        min-width: 100%;
+        background-color: rgb(85, 85, 233);
+        margin-top: .6%;
+    }
+    .stripe3 {
+        min-height: 10%;
+        min-width: 100%;
+        background-color: rgb(89, 168, 89);
+        margin-top: .6%;
+    }
 
-
-
-
+    
 
     body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
         background-color: rgb(38, 38, 38); 
         color: white;
         font-family: "Poppins", sans-serif;
+        margin: 0%;
+        transition: 1s;
+        min-width: 100%;
+        min-height: 100vh;
+        position: absolute;
+        z-index: 1;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
+    body h1 {
+        margin: 1%;
+    }
+
+
     
+    .horizontalLine {
+        width: 100%;
+        font-size: 2.5%;
+        background-color: rgb(158, 158, 158);
+    }
+
+
+   .search {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        transition: .2s;
+    }
+      
+    
+      
+    .searchButton {
+        height: 1.7em;
+        line-height: 1.5em;
+        margin-top: 1.5%;
+        margin-left: -8%;
+        padding: 3px 0;
+        width: 28px;
+        cursor: pointer;
+        opacity: .5;
+    }
+    .searchButton:hover {
+        opacity: 1;
+    }
+
+
+    .searchBar {
+        width: 100%;
+        border: none;
+        padding: 2.5%;
+        font-size: 120%;
+        background-color: white;
+        transition: .3s;
+    }
 
 
     .results {
@@ -25,17 +102,11 @@
         justify-content: center;
         margin: 1%;
         border-radius: 10px;
-        /* border: 10px solid pink; */
     }
+
     
-    .searchBar {
-        width: 100%;
-        border: none;
-        padding: 2.5%;
-        font-size: 120%;
-        background-color: white;
-        box-sizing: border-box;
-    }
+    
+    
 
     .autoCompleteList {
         display: flex;
@@ -75,6 +146,66 @@
         background-color: rgb(45, 45, 45);
     }
 
+
+    #newPokemon {
+        padding: 1%;
+        font-size: 120%;
+        background-color: rgb(65, 65, 65);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .2s;
+        margin-top: 1%;
+    }
+    #newPokemon:hover {
+        background-color: rgb(45, 45, 45);
+    }
+
+
+
+    /* Generation range input styling */
+
+    .generationSelectorContainer {
+        margin: 2%;
+        min-width: 40%;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .generationSelectorContainer button{
+        padding: 2%;
+        font-size: 120%;
+        background-color: rgb(66, 66, 66);
+        border: none;
+        border-radius: 10px;
+        color: grey;
+    }
+    .generationSelectorContainer button:hover{
+        color: rgb(170, 170, 170);
+    }
+
+
+
+    
+
+    #giveUpButton {
+        padding: 1%;
+        font-size: 120%;
+        background-color: rgb(65, 65, 65);
+        color: white;
+        border: none;
+        border-radius: 10px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: .2s;
+    }
+    #giveUpButton:hover {
+        background-color: rgb(45, 45, 45);
+    }
+
+
     .image {
         display: flex;
         justify-content: center;
@@ -85,7 +216,16 @@
     }
 
 
-   
+   #leftText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 20%;
+    margin: 1%;
+   }
+   #leftText p {
+    margin: 1%;
+   }
 
     
     
@@ -94,7 +234,6 @@
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        /* border: solid 1px red; */
         margin: 2% 0% .5% 0%;
         min-width: 35%;
         max-width: 35%;
@@ -139,20 +278,19 @@
     .region p {
         align-self: center;
         padding: 0%;
+        font-size: 120%;
     }
     
     
     .bigContainer {
         display: flex;
         flex-direction: row;
-        /* border: solid 1px blue;  */
         max-width: 40%;
     }
     
     .pokedexContainer {
         display: flex;
         flex-direction: column;
-        /* border: solid 1px red; */
         padding: 2%;
         min-width: 55%;
     }
@@ -180,7 +318,6 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        /* border: solid 1px red; */
         padding: 2%;
         min-width: 35%;
     }
