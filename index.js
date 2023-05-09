@@ -1,15 +1,11 @@
-let dexEntry;
-let dexEntry1;
-let dexEntry2;
+let dexEntry, dexEntry1, dexEntry2;
+let pokemonName, singleType, globalIdNum, currentStreakVar;
 let numberOfHintsLeft = 5;
 let numberOfGuessesLeft = 3;
 let visibleHint = [false, false, false, false, false];
-let pokemonName;
 let typeArray = [];
 let img1 = new Image();
 let img2 = new Image();
-let singleType;
-let globalIdNum;
 
 const pokemonA = ["Abomasnow", "Abra", "Absol", "Accelgor", "Aegislash", "Aerodactyl", "Aggron", "Aipom", "Alakazam", "Alcremie", "Alomomola", "Altaria", "Amaura", "Ambipom", "Amoonguss", "Ampharos", "Anorith", "Appletun", "Applin", "Araquanid", "Arbok", "Arcanine", "Arceus", "Archen", "Archeops", "Arctovish", "Arctozolt", "Ariados", "Armaldo", "Aromatisse", "Aron", "Arrokuda", "Articuno", "Audino", "Aurorus", "Avalugg", "Axew", "Azelf", "Azumarill", "Azurill"];
 const pokemonB = ["Bagon", "Baltoy", "Banette", "Barbaracle", "Barboach", "Barraskewda", "Basculin", "Bastiodon", "Bayleef", "Beartic", "Beautifly", "Beedrill", "Beheeyem", "Beldum", "Bellossom", "Bellsprout", "Bergmite", "Bewear", "Bibarel", "Bidoof", "Binacle", "Bisharp", "Blacephalon", "Blastoise", "Blaziken", "Blipbug", "Blissey", "Blitzle", "Boldore", "Boltund", "Bonsly", "Bouffalant", "Bounsweet", "Braixen", "Braviary", "Breloom", "Brionne", "Bronzong", "Bronzor", "Bruxish", "Budew", "Buizel", "Bulbasaur", "Buneary", "Bunnelby", "Burmy", "Butterfree", "Buzzwole"];
@@ -49,18 +45,15 @@ const originalPlaceholder = searchBar.getAttribute('placeholder');
 document.querySelector('body').addEventListener('click', function(event) {
     if (event.target.tagName.toLowerCase() === 'li') {
       searchBar.value = event.target.textContent;
-        
     }
   });
 
 searchBar.addEventListener('focus', function() {
   searchBar.removeAttribute('placeholder');
 });
-
 searchBar.addEventListener('blur', function() {
   searchBar.setAttribute('placeholder', originalPlaceholder);
 });
-
 
 document.querySelector("#autoCompleteList").style.height = "0";
 document.querySelector("#autoCompleteList").style.display = "none";
@@ -73,20 +66,9 @@ document.addEventListener("click", function(e) {
           
     } 
     else if (e.target !== searchInput) {
-        // searchInput.value = "";
         document.querySelector("#autoCompleteList").style.display = "none";
     } 
 })
-
-
-
-
-
-
-
-
-
-
 
 
 //Function that autocomplete names in the search bar
@@ -110,14 +92,16 @@ searchInput.addEventListener('keyup', () => {
       renderResults(results);
 });
 
-//
+//Helper function for autocomplete
 function renderResults(results) {
+    const autoCompleteList = document.querySelector("#autoCompleteList");
+
     if (!results.length){
-        document.querySelector("#autoCompleteList").style.height = "0";
-        document.querySelector("#autoCompleteList").style.display = "none";
-    } else{
-        document.querySelector("#autoCompleteList").style.height = "100%";
-        document.querySelector("#autoCompleteList").style.display = "flex";
+        autoCompleteList.style.height = "0";
+        autoCompleteList.style.display = "none";
+    } else {
+        autoCompleteList.style.height = "100%";
+        autoCompleteList.style.display = "flex";
     }
 
     let content = results.map((item) => {
@@ -146,11 +130,6 @@ buttons.forEach((button, index) => {
 
 //New pokemon button
 document.querySelector("#newPokemon").addEventListener("click", (event) => {
-    generateRandomNumber();
-});
-
-//Helper function for newPokemon that generates a random number based off the generations selected
-function generateRandomNumber() {
     let noneSelected = false;
     let numberOfGenerations = 0;
     let randomNumber;
@@ -210,11 +189,10 @@ function generateRandomNumber() {
         return;
       }
     }
-}
+});
 
 //Changes the color of the background stripes to match the generation
 function stripeColor(generation){
-    console.log(generation);
     switch(generation){
         case "Kanto":
             document.getElementById("stripe1").style.backgroundColor = "rgb(225, 12, 16)";
@@ -261,11 +239,8 @@ function stripeColor(generation){
     }
 }
 
-
-
 //New hint function
 document.querySelector("#hintButton").addEventListener("click", (event) => {
-    console.log("new hint")
     if (numberOfHintsLeft > 0){
         loopFlag = true;
         while (loopFlag){
@@ -323,13 +298,11 @@ document.querySelector("#hintButton").addEventListener("click", (event) => {
     }
 });
 
-
 //Name check function
 inputId = document.getElementById('searchBar');
 inputId.addEventListener('keyup', function onEvent(e) {
     if (e.keyCode === 13) { 
         checkName(); 
-        console.log("name check")
     }
 });
 
@@ -337,7 +310,6 @@ function checkName(){
     const userInputName = document.querySelector("#searchBar").value;
 
     console.log(pokemonName);
-    console.log(userInputName.toLowerCase());
 
     if (userInputName.toLowerCase() === pokemonName.toLowerCase()){
         document.querySelector("#name").style.display = "flex";
@@ -358,6 +330,7 @@ function checkName(){
         document.getElementById("leftText").style.display = "none";
         document.getElementById("giveUpButton").style.display = "none";
 
+        currentStreak("increase");
         stripeColor(getRegion(globalIdNum));
         screenFlash("right");
     } else{
@@ -376,25 +349,7 @@ function checkName(){
     }
 }
 
-
-function screenFlash(inputString){
-    if (inputString === "wrong"){
-        document.querySelector("#body").style.backgroundColor = "red";
-        setTimeout(function() {
-            document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
-        },  600);
-    } else {
-        document.querySelector("#body").style.backgroundColor = "green";
-        setTimeout(function() {
-            document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
-        },  600);
-    }
-}
-
-
-
 function giveUp() {
-    console.log("giveUpButton clicked")
     screenFlash("wrong")
     document.querySelector("#name").style.display = "flex";
     document.querySelector("#image").style.display = "flex";
@@ -416,9 +371,23 @@ function giveUp() {
     numberOfHintsLeft = 0;
     document.querySelector("#hintsLeft").innerHTML = `Hints Left: ${numberOfHintsLeft}`;
 
+    currentStreak("reset");
     stripeColor(getRegion(globalIdNum));
 }
 
+function screenFlash(inputString){
+    if (inputString === "wrong"){
+        document.querySelector("#body").style.backgroundColor = "red";
+        setTimeout(function() {
+            document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
+        },  600);
+    } else {
+        document.querySelector("#body").style.backgroundColor = "green";
+        setTimeout(function() {
+            document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
+        },  600);
+    }
+}
 
 function capitalizeFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -445,8 +414,6 @@ function getRegion(randomNumber){
     }
 }
 
-
-
 function getPokedexEntry1(idNumber){
     let dexEntry;
     return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idNumber}`)
@@ -469,22 +436,23 @@ function getPokedexEntry2(idNumber){
 }
 
 function removeNameFromDexEntry(name, dexEntry){
-    name = name.toUpperCase();
+    nameUpper = name.toUpperCase();
+    nameLower = capitalizeFirstLetter(name.toLowerCase());
     let newDexEntry;
-    if (dexEntry.includes(name)){
-        newDexEntry = dexEntry.replace(new RegExp(name, "gi"), "THIS POKéMON");
+    if (dexEntry.includes(nameUpper)){
+        newDexEntry = dexEntry.replace(new RegExp(nameUpper, "gi"), "THIS POKéMON");
         return newDexEntry;
+    } else if (dexEntry.includes(nameLower)){
+        newDexEntry = dexEntry.replace(new RegExp(nameLower, "gi"), "THIS POKéMON");
+        return newDexEntry;
+    } else {
+        return dexEntry;
     }
-    return dexEntry;
 }
 
-
-
-  
 function getPokemon(idNumber){
     visibleHint = [false, false, false, false, false];
     globalIdNum = idNumber;
-    console.log(idNumber)
     getPokedexEntry1(idNumber)
     getPokedexEntry2(idNumber)
     .then((dexEntry) => {
@@ -503,8 +471,6 @@ function getPokemon(idNumber){
                 <h3><u>Pokedex Entry 2:</u></h3>
                 <p>${removeNameFromDexEntry(data.name, dexEntry2)}</p>
             `;
-
-            
 
             //Setting types into a usable array of strings
             typeArray[0] = data.types[0].type.name;
@@ -557,7 +523,6 @@ function getPokemon(idNumber){
             document.getElementById("leftText").style.display = "flex";
             document.getElementById("giveUpButton").style.display = "flex";
             
-
             numberOfHintsLeft = 5;
             numberOfGuessesLeft = 3;
 
@@ -566,8 +531,6 @@ function getPokemon(idNumber){
 
             const searchBar = document.getElementById('searchBar');
             searchBar.value = "";
-
-            console.log("end of getPokemon")
         });
     });
 
@@ -575,7 +538,6 @@ function getPokemon(idNumber){
 }
 
 function setTypes(index, imgNumber){
-    console.log(typeArray);
 
     const typeIconsFolder = "Type Icons/";
     const type = typeArray[index];
@@ -599,8 +561,24 @@ function setTypes(index, imgNumber){
 }
 
 
+if (sessionStorage.getItem("currentStreak") === null){
+    sessionStorage.setItem("currentStreak", 0);
+}
+
+function currentStreak(input){
+    let currentStreakVar = parseInt(sessionStorage.getItem("currentStreak"));
+
+    if (input === "increase"){
+        currentStreakVar++;
+        sessionStorage.setItem("currentStreak", currentStreakVar);
+        document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
+    } else {
+        currentStreakVar = 0;
+        sessionStorage.setItem("currentStreak", currentStreakVar);
+        document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
+    }
+}
+
 
 //Just picks a random pokemon on load
 getPokemon(Math.floor(Math.random() * 890) + 1);
-
-

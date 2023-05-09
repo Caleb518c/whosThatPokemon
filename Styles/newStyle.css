@@ -92,6 +92,7 @@
         font-size: 120%;
         background-color: white;
         transition: .3s;
+        box-sizing: border-box;
     }
 
 
@@ -102,12 +103,11 @@
         justify-content: center;
         margin: 1%;
         border-radius: 10px;
+        border: solid 3px blue;
     }
 
     
     
-    
-
     .autoCompleteList {
         display: flex;
         flex-direction: column;
