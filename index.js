@@ -1,5 +1,5 @@
 let dexEntry, dexEntry1, dexEntry2;
-let pokemonName, singleType, globalIdNum, currentStreakVar;
+let pokemonName, singleType, globalIdNum;
 let numberOfHintsLeft = 5;
 let numberOfGuessesLeft = 3;
 let visibleHint = [false, false, false, false, false];
@@ -561,20 +561,24 @@ function setTypes(index, imgNumber){
 }
 
 
-if (localStorage.getItem("currentStreak") === null){
-    localStorage.setItem("currentStreak", 0);
+
+if (sessionStorage.getItem("currentStreak") === null){
+    sessionStorage.setItem("currentStreak", 0);
+    document.getElementById("streak").innerHTML = `Current Streak: ${sessionStorage.getItem("currentStreak")}`;
+} else {
+    document.getElementById("streak").innerHTML = `Current Streak: ${sessionStorage.getItem("currentStreak")}`;
 }
 
 function currentStreak(input){
-    let currentStreakVar = parseInt(localStorage.getItem("currentStreak"));
+    let currentStreakVar = parseInt(sessionStorage.getItem("currentStreak"));
 
     if (input === "increase"){
         currentStreakVar++;
-        localStorage.setItem("currentStreak", currentStreakVar);
+        sessionStorage.setItem("currentStreak", currentStreakVar);
         document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
     } else {
         currentStreakVar = 0;
-        localStorage.setItem("currentStreak", currentStreakVar);
+        sessionStorage.setItem("currentStreak", currentStreakVar);
         document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
     }
 }
