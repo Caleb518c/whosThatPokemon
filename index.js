@@ -533,8 +533,6 @@ function getPokemon(idNumber){
             searchBar.value = "";
         });
     });
-
-
 }
 
 function setTypes(index, imgNumber){
@@ -623,4 +621,4 @@ if (!sessionStorage.getItem('alertShown')) {
   
     // Set the flag in session storage
     sessionStorage.setItem('alertShown', true);
-  }
+}
