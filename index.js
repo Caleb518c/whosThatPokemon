@@ -522,7 +522,7 @@ function getPokemon(idNumber){
             document.getElementById("hintButton").style.display = "flex";
             document.getElementById("leftText").style.display = "flex";
             document.getElementById("giveUpButton").style.display = "flex";
-            
+            document.getElementById("streak").style.display = "flex";
             numberOfHintsLeft = 5;
             numberOfGuessesLeft = 3;
 
@@ -561,28 +561,66 @@ function setTypes(index, imgNumber){
 }
 
 
-
-if (sessionStorage.getItem("currentStreak") === null){
-    sessionStorage.setItem("currentStreak", 0);
-    document.getElementById("streak").innerHTML = `Current Streak: ${sessionStorage.getItem("currentStreak")}`;
-} else {
-    document.getElementById("streak").innerHTML = `Current Streak: ${sessionStorage.getItem("currentStreak")}`;
-}
-
-function currentStreak(input){
-    let currentStreakVar = parseInt(sessionStorage.getItem("currentStreak"));
-
-    if (input === "increase"){
-        currentStreakVar++;
-        sessionStorage.setItem("currentStreak", currentStreakVar);
-        document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
+//Stores and displays current streak in local storage
+{
+    if (sessionStorage.getItem("currentStreak") === null){
+        sessionStorage.setItem("currentStreak", 0);
+        document.getElementById("streak").innerHTML = `Current Streak: ${sessionStorage.getItem("currentStreak")}`;
     } else {
-        currentStreakVar = 0;
-        sessionStorage.setItem("currentStreak", currentStreakVar);
-        document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
+        document.getElementById("streak").innerHTML = `Current Streak: ${sessionStorage.getItem("currentStreak")}`;
+    }
+    
+    function currentStreak(input){
+        let currentStreakVar = parseInt(sessionStorage.getItem("currentStreak"));
+    
+        if (input === "increase"){
+            currentStreakVar++;
+            sessionStorage.setItem("currentStreak", currentStreakVar);
+            document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
+        } else {
+            currentStreakVar = 0;
+            sessionStorage.setItem("currentStreak", currentStreakVar);
+            document.getElementById("streak").innerHTML = `Current Streak: ${currentStreakVar}`;
+        }
     }
 }
 
 
-//Just picks a random pokemon on load
-getPokemon(Math.floor(Math.random() * 890) + 1);
+//Prompts the user to pick generations on first load of the page
+//And gives a window explaining how to play
+{
+document.querySelector("#image").innerHTML = `<img class="sprite" id="sprite" src="help.png" alt="Question Mark/Current Pokemon Image">`;
+
+document.querySelector("#name").style.display = "none";
+document.querySelector("#image").style.display = "flex";
+document.querySelector("#pokedexEntry2").style.display = "none";
+document.querySelector("#types").style.display = "none";
+document.querySelector("#region").style.display = "none";
+document.querySelector("#weight").style.display = "none";
+document.querySelector("#height").style.display = "none";
+document.getElementById("streak").style.display = "none";
+document.getElementById("newPokemon").style.display = "flex";
+document.getElementById("generationSelectorContainer").style.display = "flex";
+
+document.getElementById("heightAndWeightContainer").style.minWidth = "0";
+document.getElementById("heightAndWeightContainer").style.padding = "0%";
+
+document.getElementById("results").style.display = "none";
+document.getElementById("hintButton").style.display = "none";
+document.getElementById("leftText").style.display = "none";
+document.getElementById("giveUpButton").style.display = "none";
+
+numberOfHintsLeft = 5;
+numberOfGuessesLeft = 3;
+document.querySelector("#hintsLeft").innerHTML = `Hints Left: ${numberOfHintsLeft}`;
+document.querySelector("#guessesLeft").innerHTML = `Guesses Left: ${numberOfGuessesLeft}`;
+}
+
+// Check if the flag is set in session storage
+if (!sessionStorage.getItem('alertShown')) {
+    // Display the alert
+    window.alert("Welcome message goes here...");
+  
+    // Set the flag in session storage
+    sessionStorage.setItem('alertShown', true);
+  }
