@@ -44,7 +44,7 @@
         min-width: 100%;
         min-height: 100vh;
         position: absolute;
-        z-index: 1;
+        z-index: 10;
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -187,21 +187,54 @@
 
 
     /* Generation range input styling */
-
-    .generationSelectorContainer {
-        margin: 2%;
-        min-width: 40%;
-        display: flex;
-        justify-content: space-between;
+    @media (max-width: 750px) and (min-width: 300px) {
+        .generationSelectorContainer {
+            margin: 2%;
+            min-width: 80%;
+            max-width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
     }
+    @media (max-width: 1300px) and (min-width: 751px) {
+        .generationSelectorContainer {
+            margin: 2%;
+            min-width: 60%;
+            max-width: 60%;
+            display: flex;
+            justify-content: center;
+        }
+    }
+    @media (min-width: 1301px) {
+        .generationSelectorContainer {
+            margin: 2%;
+            min-width: 40%;
+            max-width: 40%;
+            display: flex;
+            justify-content: center;
+        }
+    }    
 
+    /* This shit doesn't work at all I need to fix it */
+    .genTopRow, .genBottomRow {
+        /* margin: 2%; */
+        min-width: 70%;
+        max-width: 100%;
+        display: flex;
+        justify-content: center;
+        /* margin-left: 3%;
+        margin-right: 3%; */
+    }  
     .generationSelectorContainer button{
-        padding: 2%;
+        padding: 4%;
         font-size: 120%;
         background-color: rgb(66, 66, 66);
         border: none;
         border-radius: 10px;
         color: grey;
+        margin: 2%;
     }
     .generationSelectorContainer button:hover{
         color: rgb(170, 170, 170);
@@ -431,3 +464,102 @@
 
     
 
+
+
+
+    .animate {
+        animation: fall .5s ease-in-out, shake 1.25s cubic-bezier(.36, .07, .19, .97) 10;
+    }
+    .fallAnimation {
+        animation: fall-out 1s ease-in-out forwards;
+    }
+
+
+    /* False background to hide loading animation */
+    .hide {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -5;
+        background-color: rgb(38, 38, 38);
+        transition: 1s;
+    }
+
+
+    *, *:before, *:after {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+      }
+      .center-on-page {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        z-index: -10;
+      }
+      /* Poké Styles */
+      .pokeball {
+        position: relative;
+        width: 200px;
+        height: 200px;
+        background: #fff;
+        border: 10px solid #000;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: inset -10px 10px 0 10px #ccc;
+        /* animation: fall .25s ease-in-out,
+                   shake 1.25s cubic-bezier(.36,.07,.19,.97) 3; */
+      }
+      .pokeball::before,
+      .pokeball::after {
+        content:"";
+        position: absolute;
+      }
+      .pokeball::before {
+        background: red;
+        width: 100%;
+        height: 50%;
+      }
+      .pokeball::after {
+        top: calc(50% - 10px);
+        width: 100%;
+        height: 20px;
+        background: #000;
+      }
+      .pokeball__button {
+        position: absolute;
+        top: calc(50% - 30px);
+        left: calc(50% - 30px);
+        width: 60px;
+        height: 60px;
+        background: #7f8c8d;
+        border: 10px solid #fff;
+        border-radius: 50%;
+        z-index: 10;
+        box-shadow: 0 0 0 10px black;
+        /* animation: blink .5s alternate 7; */
+      }
+      /* Animation */
+      @keyframes blink {
+        from { background: #eee;}
+        to { background: #e74c3c; }
+      }
+      @keyframes shake {
+        0% { transform: translate(0, 0) rotate(0); }
+        20% { transform: translate(-10px, 0) rotate(-20deg); }
+        30% { transform: translate(10px, 0) rotate(20deg); }
+        50% { transform: translate(-10px, 0) rotate(-10deg); }
+        60% { transform: translate(10px, 0) rotate(10deg); }
+        100% { transform: translate(0, 0) rotate(0); }
+      }
+      @keyframes fall {
+        0% { top: -200px }
+        60% { top: 0 }
+        80% { top: -20px }
+        100% { top: 0 }
+      }
+      @keyframes fall-out {
+        0% { top: 0; }
+        100% { top: 100vh;}
+      }

@@ -1,5 +1,6 @@
+
 let dexEntry, dexEntry1, dexEntry2;
-let pokemonName, singleType, globalIdNum;
+let pokemonName, singleType, globalIdNum, numberOfGenerations, randomNumber;
 let numberOfHintsLeft = 5;
 let numberOfGuessesLeft = 3;
 let visibleHint = [false, false, false, false, false];
@@ -37,22 +38,20 @@ const pokemonZ = [  "Zacian",  "Zamazenta",  "Zangoose",  "Zapdos",  "Zarude",  
 const allPokemonNames = [...pokemonA, ...pokemonB, ...pokemonC, ...pokemonD, ...pokemonE, ...pokemonF, ...pokemonG, ...pokemonH, ...pokemonI, ...pokemonJ, ...pokemonK, ...pokemonL, ...pokemonM, ...pokemonN, ...pokemonO, ...pokemonP, ...pokemonQ, ...pokemonR, ...pokemonS, ...pokemonT, ...pokemonU, ...pokemonV, pokemonW, ...pokemonX, ...pokemonY, ...pokemonZ]
 
 
-
-
 const searchBar = document.getElementById('searchBar');
 const originalPlaceholder = searchBar.getAttribute('placeholder');
 
 document.querySelector('body').addEventListener('click', function(event) {
     if (event.target.tagName.toLowerCase() === 'li') {
-      searchBar.value = event.target.textContent;
+    searchBar.value = event.target.textContent;
     }
-  });
+});
 
 searchBar.addEventListener('focus', function() {
-  searchBar.removeAttribute('placeholder');
+searchBar.removeAttribute('placeholder');
 });
 searchBar.addEventListener('blur', function() {
-  searchBar.setAttribute('placeholder', originalPlaceholder);
+searchBar.setAttribute('placeholder', originalPlaceholder);
 });
 
 document.querySelector("#autoCompleteList").style.height = "0";
@@ -63,7 +62,7 @@ document.addEventListener("click", function(e) {
     if (e.target.tagName.toLowerCase() === 'li') {
         searchBar.value = e.target.textContent;
         document.querySelector("#autoCompleteList").style.display = "none";
-          
+        
     } 
     else if (e.target !== searchInput) {
         document.querySelector("#autoCompleteList").style.display = "none";
@@ -78,18 +77,18 @@ searchInput.addEventListener('keyup', () => {
     let input = searchInput.value;
 
     const pokemonByLetter = { a: pokemonA, b: pokemonB, c: pokemonC, d: pokemonD, e: pokemonE, f: pokemonF, g: pokemonG, h: pokemonH, i: pokemonI, j: pokemonJ, k: pokemonK, l: pokemonL, m: pokemonM, n: pokemonN, o: pokemonO, p: pokemonP, q: pokemonQ, r: pokemonR, s: pokemonS, t: pokemonT, u: pokemonU, v: pokemonV, w: pokemonW, x: pokemonX, y: pokemonY, z: pokemonZ };      
-      
-      const firstLetter = searchInput.value.charAt(0).toLowerCase();
-      const pokemonList = pokemonByLetter[firstLetter] || [];
-      
-      results = [];
-      input = searchInput.value;
-      if (input.length > 0) {
+    
+    const firstLetter = searchInput.value.charAt(0).toLowerCase();
+    const pokemonList = pokemonByLetter[firstLetter] || [];
+    
+    results = [];
+    input = searchInput.value;
+    if (input.length > 0) {
         results = pokemonList.filter((item) => {
-          return item.toLowerCase().includes(input.toLowerCase());
+        return item.toLowerCase().includes(input.toLowerCase());
         });
-      }
-      renderResults(results);
+    }
+    renderResults(results);
 });
 
 //Helper function for autocomplete
@@ -119,10 +118,10 @@ const buttons = document.querySelectorAll(".regionButton");
 const buttonStates = new Array(buttons.length).fill(false);
 
 buttons.forEach((button, index) => {
-  button.addEventListener("click", (event) => {
+button.addEventListener("click", (event) => {
     button.style.color = (button.style.color === "white") ? "grey" : "white";
     buttonStates[index] = !buttonStates[index];
-  });
+});
 });
 
 
@@ -131,65 +130,66 @@ buttons.forEach((button, index) => {
 //New pokemon button
 document.querySelector("#newPokemon").addEventListener("click", (event) => {
     let noneSelected = false;
-    let numberOfGenerations = 0;
-    let randomNumber;
-  
+    numberOfGenerations = 0;
+
     while (noneSelected === false) {
-      const enabledRanges = [];
-  
-      buttonStates.forEach((state, index) => {
+    const enabledRanges = [];
+
+    buttonStates.forEach((state, index) => {
         if (state) {
-          switch (index) {
+        switch (index) {
             case 0:
-              enabledRanges.push({ rangeStart: 1, rangeEnd: 151 });
-              break;
+            enabledRanges.push({ rangeStart: 1, rangeEnd: 151 });
+            break;
             case 1:
-              enabledRanges.push({ rangeStart: 152, rangeEnd: 251 });
-              break;
+            enabledRanges.push({ rangeStart: 152, rangeEnd: 251 });
+            break;
             case 2:
-              enabledRanges.push({ rangeStart: 252, rangeEnd: 386 });
-              break;
+            enabledRanges.push({ rangeStart: 252, rangeEnd: 386 });
+            break;
             case 3:
-              enabledRanges.push({ rangeStart: 387, rangeEnd: 493 });
-              break;
+            enabledRanges.push({ rangeStart: 387, rangeEnd: 493 });
+            break;
             case 4:
-              enabledRanges.push({ rangeStart: 494, rangeEnd: 649 });
-              break;
+            enabledRanges.push({ rangeStart: 494, rangeEnd: 649 });
+            break;
             case 5:
-              enabledRanges.push({ rangeStart: 650, rangeEnd: 721 });
-              break;
+            enabledRanges.push({ rangeStart: 650, rangeEnd: 721 });
+            break;
             case 6:
-              enabledRanges.push({ rangeStart: 722, rangeEnd: 809 });
-              break;
+            enabledRanges.push({ rangeStart: 722, rangeEnd: 809 });
+            break;
             case 7:
-              enabledRanges.push({ rangeStart: 810, rangeEnd: 905 });
-              break;
+            enabledRanges.push({ rangeStart: 810, rangeEnd: 905 });
+            break;
             default:
-              break;
-          }
-          numberOfGenerations++;
+            break;
         }
-      });
-  
-      if (enabledRanges.length === 0) {
+        numberOfGenerations++;
+        }
+    });
+
+    if (enabledRanges.length === 0) {
         window.alert("No generations are selected. Please select at least one generation.");
         noneSelected = true;
-      } else {
+    } else {
         const selectedRange = enabledRanges[Math.floor(Math.random() * enabledRanges.length)];
         randomNumber = Math.floor(Math.random() * (selectedRange.rangeEnd - selectedRange.rangeStart + 1)) + selectedRange.rangeStart;
-        getPokemon(randomNumber);
 
-        if (numberOfGenerations === 1){
-            stripeColor(getRegion(randomNumber));
-        } else {
-            document.getElementById("stripe1").style.backgroundColor = "red";
-            document.getElementById("stripe2").style.backgroundColor = "blue";
-            document.getElementById("stripe3").style.backgroundColor = "green";
-        }
+        start(randomNumber, numberOfGenerations);
+
+        
+
         return;
-      }
+    }
     }
 });
+
+
+async function start(randomNumber, numberOfGenerations) {
+    await getPokemon(randomNumber);
+}
+
 
 //Changes the color of the background stripes to match the generation
 function stripeColor(generation){
@@ -378,13 +378,17 @@ function giveUp() {
 function screenFlash(inputString){
     if (inputString === "wrong"){
         document.querySelector("#body").style.backgroundColor = "red";
+        document.querySelector(".hide").style.backgroundColor = "red";
         setTimeout(function() {
             document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
+            document.querySelector(".hide").style.backgroundColor = "rgb(38, 38, 38)";
         },  600);
     } else {
         document.querySelector("#body").style.backgroundColor = "green";
+        document.querySelector(".hide").style.backgroundColor = "green";
         setTimeout(function() {
             document.querySelector("#body").style.backgroundColor = "rgb(38, 38, 38)";
+            document.querySelector(".hide").style.backgroundColor = "rgb(38, 38, 38)";
         },  600);
     }
 }
@@ -417,22 +421,22 @@ function getRegion(randomNumber){
 function getPokedexEntry1(idNumber){
     let dexEntry;
     return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idNumber}`)
-      .then((response) => response.json())
-      .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
         const englishEntries = data.flavor_text_entries.filter((entry) => entry.language.name === "en");
         dexEntry1 = englishEntries[0].flavor_text.toString();
         return dexEntry1;
-      });
+    });
 }
 function getPokedexEntry2(idNumber){
     let dexEntry;
     return fetch(`https://pokeapi.co/api/v2/pokemon-species/${idNumber}`)
-      .then((response) => response.json())
-      .then((data) => {
+    .then((response) => response.json())
+    .then((data) => {
         const englishEntries = data.flavor_text_entries.filter((entry) => entry.language.name === "en");
         dexEntry2 = englishEntries[1].flavor_text.toString();
         return dexEntry2;
-      });
+    });
 }
 
 function removeNameFromDexEntry(name, dexEntry){
@@ -451,14 +455,33 @@ function removeNameFromDexEntry(name, dexEntry){
 }
 
 function getPokemon(idNumber){
+
+    return new Promise(function(resolve, reject) {
+        // Async operation
+        // ...
+
+        //Start pokeball loading animation
+        const pokeball = document.querySelector('.pokeball');
+        const container = document.querySelector('.center-on-page');
+        pokeball.classList.add('animate');
+        container.style.zIndex = '50';
+
+
+
     visibleHint = [false, false, false, false, false];
     globalIdNum = idNumber;
+
+
     getPokedexEntry1(idNumber)
-    getPokedexEntry2(idNumber)
     .then((dexEntry) => {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${idNumber}`) 
-        .then((response) => response.json())
-        .then((data) => {
+        return getPokedexEntry2(idNumber);
+    })
+    .then((dexEntry) => {
+        return fetch(`https://pokeapi.co/api/v2/pokemon/${idNumber}`);
+    })
+    .then((response) => response.json())
+    .then((data) => {
+            // Process the data and perform other operations
             pokemonName = data.name;
 
             document.querySelector("#name").innerHTML = `${capitalizeFirstLetter(data.name)}`;
@@ -531,9 +554,26 @@ function getPokemon(idNumber){
 
             const searchBar = document.getElementById('searchBar');
             searchBar.value = "";
+
+            //Removes loading animation
+            pokeball.classList.remove('animate');
+            pokeball.classList.add('fallAnimation');
+            setTimeout(e => {
+                pokeball.classList.remove('fallAnimation');
+                container.style.zIndex = '-10';
+            }, 1000); 
         });
-    });
+
+        if (numberOfGenerations === 1){
+            stripeColor(getRegion(randomNumber));
+            } else {
+            document.getElementById("stripe1").style.backgroundColor = "red";
+            document.getElementById("stripe2").style.backgroundColor = "blue";
+            document.getElementById("stripe3").style.backgroundColor = "green";
+        }
+    });  
 }
+
 
 function setTypes(index, imgNumber){
 
@@ -618,7 +658,7 @@ document.querySelector("#guessesLeft").innerHTML = `Guesses Left: ${numberOfGues
 if (!sessionStorage.getItem('alertShown')) {
     // Display the alert
     window.alert("Welcome message goes here...");
-  
+
     // Set the flag in session storage
     sessionStorage.setItem('alertShown', true);
 }

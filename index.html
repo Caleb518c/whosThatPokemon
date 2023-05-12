@@ -14,14 +14,21 @@
     <div class="stripe3" id="stripe3">-</div>
 </div>
 
+<div class="hide"></div>
+
+<div class="center-on-page">
+    <div class="pokeball">
+        <div class="pokeball__button"></div>
+    </div>
+</div>
+
 <body id="body">
     
     <h1>Who's that Pokémon?</h1>
-    <div class="horizontalLine">&#8192</div>
+    <div class="horizontalLine">&#8192</div>   
 
     <div id="streak">Current Streak: 0</div>
 
-    
     <div class="results" id="results">
         <div class="search" id="search">
             <input type="text" class="searchBar" id="searchBar" placeholder="Who's that Pokémon?" style="text-align: center;">
@@ -45,14 +52,18 @@
     <button id="newPokemon">New pokémon</button>
     
     <div class="generationSelectorContainer" id="generationSelectorContainer">
-        <button id="kanto" class="regionButton">Kanto</button>
-        <button id="johto" class="regionButton">Johto</button>
-        <button id="hoenn" class="regionButton">Hoenn</button>
-        <button id="sinnoh" class="regionButton">Sinnoh</button>
-        <button id="unova" class="regionButton">Unova</button>
-        <button id="kalos" class="regionButton">Kalos</button>
-        <button id="alola" class="regionButton">Alola</button>
-        <button id="galar" class="regionButton">Galar</button>
+        <div class="genTopRow">
+            <button id="kanto" class="regionButton">Kanto</button>
+            <button id="johto" class="regionButton">Johto</button>
+            <button id="hoenn" class="regionButton">Hoenn</button>
+            <button id="sinnoh" class="regionButton">Sinnoh</button>
+        </div>
+        <div class="genBottomRow">
+            <button id="unova" class="regionButton">Unova</button>
+            <button id="kalos" class="regionButton">Kalos</button>
+            <button id="alola" class="regionButton">Alola</button>
+            <button id="galar" class="regionButton">Galar</button>
+        </div>
     </div>
     
 
